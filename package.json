@@ -1,0 +1,19 @@
+{
+  "name": "search-and-select",
+  "version": "1.0.0",
+  "description": "Dropdown directive for AngularJS: Includes server side pagination & search records.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rejtg21/searchandselect_angularjs.git"
+  },
+  "author": "TMJP Engineering (https://github.com/TMJPEngineering)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rejtg21/searchandselect_angularjs/issues"
+  },
+  "homepage": "https://github.com/rejtg21/searchandselect_angularjs#readme"
+}
