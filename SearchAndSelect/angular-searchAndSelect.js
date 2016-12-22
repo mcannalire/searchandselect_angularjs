@@ -1,17 +1,30 @@
-﻿angular.module('angular-search-and-select', []).directive('searchandselect', function ($rootScope) {
-    return {
-        replace: true,
-        restrict: 'E',
-        scope: {
-            values: "=",
-            selecteditem: "=",
-            key: "@",
-            onscroll: "&",
-            totalrecords: "="
-        },
-        templateUrl: 'searchandselect.html',
-        link: function (scope, elm, attr) {
+﻿(function() {
+   'use strict'
+    angular
+        .module('angular-search-and-select', [])
+        .run(runSearchSelect)
+        .directive('searchAndSelect', searchAndSelect);
 
+    searchAndSelect.$inject = ['$rootScope'];
+
+    function searchAndSelect($rootScope) {
+        var directive = {
+            replace: true,
+            restrict: 'E',
+            scope: {
+                values: "=",
+                selecteditem: "=",
+                key: "@",
+                onscroll: "&",
+                totalrecords: "="
+            },
+            templateUrl: 'search-and-select/template.html',
+            link: linkFunc
+        };
+
+        return directive;
+
+        function linkFunc(scope, elm, attr) {
             scope.showList = false;
 
             scope.selectItem = function (item) {
@@ -61,10 +74,46 @@
                     });
                 }
             });
-
         }
-    };
-});
+    }
+
+    runSearchSelect.$inject = ['$templateCache'];
+
+    function runSearchSelect($templateCache) {
+        $templateCache.put('search-and-select/template.html', template());
+
+        function template() {
+            return (
+                '<div class="searchandselect" ng-class="{ active: showList }">\n'+
+                    '<div class="header" ng-click="show()">\n'+
+                        '<b>{{selecteditem[key]}}</b>\n' +
+                        '<span class="pull-right glyphicon" ng:class="{true:\'glyphicon-chevron-up\', false:\'glyphicon-chevron-down\'}[showList]"></span>\n' +
+                    '</div>\n' +
+                    '<div class="search">\n' +
+                        '<div class="input-group">\n' +
+                            '<input type="text" ng-model="searchKey" class="form-control" placeholder="Type 3 characters to start search" ng-change="textChanged(searchKey)">\n' +
+                            '<span class="input-group-btn">\n' +
+                                '<button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>\n' +
+                            '</span>\n' +
+                        '</div><!-- /input-group -->\n' +
+                        '<div class="text-right nomargin nopadding"><small>Showing records 1 to {{values.length}} of {{totalrecords}}</small></div>\n' +
+                    '</div>\n' +
+                    '<ul class="dropdown">\n' +
+                        '<li ng-repeat="item in values" ng-click="selectItem(item)" ng-if="values.length > 0">\n'+
+                            '<span>{{item[key]}}</span>\n'+
+                            '<i class="glyphicon glyphicon-ok" ng-show="isActive(item)"></i>\n'+
+                        '</li>\n'+
+                        '<li ng-if="values.length == 0">\n'+
+                            'No Records\n' +
+                        '</li>\n' +
+                    '</ul>\n' +
+                '</div>\n'
+            );
+        }
+    }
+})();
+
+
 
 
 
