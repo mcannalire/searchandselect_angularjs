@@ -14,7 +14,7 @@ small {
 .searchandselect {
     cursor: pointer;
     position: relative;
-    width: 300px;
+    width: 100%;
     border: 1px solid #e6e8ea;
     z-index: 9999;
 }
