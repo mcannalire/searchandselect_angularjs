@@ -1,4 +1,4 @@
-﻿(function() {
+﻿﻿(function() {
    'use strict'
     angular
         .module('angular-search-and-select', [])
@@ -16,7 +16,7 @@
                 selecteditem: "=",
                 key: "@",
                 onscroll: "&",
-                totalrecords: "="
+                totalrecords: "=",
             },
             templateUrl: 'search-and-select/template.html',
             link: linkFunc
@@ -33,6 +33,8 @@
             };
 
             scope.isActive = function (item) {
+               if(!item || !scope.selecteditem) return;
+
                 return item[scope.key] === scope.selecteditem[scope.key];
             };
 
@@ -43,7 +45,6 @@
                         pagenumber: 1
                     });
                 }
-
             };
 
             scope.show = function () {
@@ -59,21 +60,37 @@
                         scope.showList = false;
                     });
             });
+            var dropdown = elm.find("ul"),
+            scrollable = true;
+            dropdown.bind('scroll', onScroll);
 
-            elm.find(".dropdown").bind('scroll', function () {
-                var currentItem = $(this);
-                if (currentItem.scrollTop() + currentItem.innerHeight() >= currentItem[0].scrollHeight) {
-
+            function onScroll() {
+               //  var currentItem = $(this);
+                if (dropdown[0].scrollTop >= dropdown[0].scrollHeight/2 && scrollable) {
+                   scrollable = false;
                     if (!scope.pagenumber) scope.pagenumber = 2;
                     else
                         scope.pagenumber = scope.pagenumber + 1;
 
-                    scope.onscroll({
+                    var data = {
                         searchKey: scope.searchKey,
                         pagenumber: scope.pagenumber
-                    });
+                    };
+
+                    var defer = scope.onscroll(data);
+
+                    if(defer.then) {
+                       defer.then(function() {
+                          dropdown[0].scrollTop -= 100;
+                          scrollable = true;
+                       });
+                       // if function returned true
+                    } else if(defer) {
+                       dropdown[0].scrollTop -= 100;
+                       scrollable = true;
+                    }
                 }
-            });
+            }
         }
     }
 
@@ -91,7 +108,7 @@
                     '</div>\n' +
                     '<div class="search">\n' +
                         '<div class="input-group">\n' +
-                            '<input type="text" ng-model="searchKey" class="form-control" placeholder="Type 3 characters to start search" ng-change="textChanged(searchKey)">\n' +
+                            '<input type="text" ng-model="searchKey" class="form-control" placeholder="Type 3 characters to start search" ng-keyup="textChanged(searchKey)">\n' +
                             '<span class="input-group-btn">\n' +
                                 '<button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>\n' +
                             '</span>\n' +
@@ -112,9 +129,3 @@
         }
     }
 })();
-
-
-
-
-
-
