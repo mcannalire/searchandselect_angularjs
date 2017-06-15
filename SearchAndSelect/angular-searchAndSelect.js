@@ -102,23 +102,13 @@
         function template() {
             return (
                 '<div class="searchandselect" ng-class="{ active: showList }">\n'+
-                    '<div class="header" ng-click="show()">\n'+
+                    '<div class="header ui-select-bootstrap" ng-click="show()">\n'+
                         '<b>{{selecteditem[key]}}</b>\n' +
-                        '<span class="pull-right glyphicon" ng:class="{true:\'glyphicon-chevron-up\', false:\'glyphicon-chevron-down\'}[showList]"></span>\n' +
+                        '<span class="pull-right caret"></span>\n' +
                     '</div>\n' +
-                    '<div class="search">\n' +
-                        '<div class="input-group">\n' +
-                            '<input type="text" ng-model="searchKey" class="form-control" placeholder="Type 3 characters to start search" ng-keyup="textChanged(searchKey)">\n' +
-                            '<span class="input-group-btn">\n' +
-                                '<button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>\n' +
-                            '</span>\n' +
-                        '</div><!-- /input-group -->\n' +
-                        '<div class="text-right nomargin nopadding"><small>Showing records 1 to {{values.length}} of {{totalrecords}}</small></div>\n' +
-                    '</div>\n' +
-                    '<ul class="dropdown">\n' +
-                        '<li ng-repeat="item in values" ng-click="selectItem(item)" ng-if="values.length > 0">\n'+
-                            '<span>{{item[key]}}</span>\n'+
-                            '<i class="glyphicon glyphicon-ok" ng-show="isActive(item)"></i>\n'+
+                    '<ul class="dropdown dropdown-menu">\n' +
+                        '<li ng-repeat="item in values" class="menu-item" ng-click="selectItem(item)" ng-if="values.length > 0">\n'+
+                            '<div class="inner-menu-item"><span>{{item[key]}}</span></div>\n'+
                         '</li>\n'+
                         '<li ng-if="values.length == 0">\n'+
                             'No Records\n' +
