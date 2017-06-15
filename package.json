@@ -2,7 +2,7 @@
   "name": "search-and-select",
   "version": "1.0.0",
   "description": "Dropdown directive for AngularJS: Includes server side pagination & search records.",
-  "main": "index.js",
+  "main": "SearchAndSelect/angular-searchAndSelect.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
