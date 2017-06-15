@@ -1,6 +1,6 @@
 {
   "name": "search-and-select",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dropdown directive for AngularJS: Includes server side pagination & search records.",
   "main": "index.js",
   "scripts": {
