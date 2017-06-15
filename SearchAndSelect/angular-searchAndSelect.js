@@ -129,3 +129,5 @@
         }
     }
 })();
+
+module.exports = 'angular-search-and-select';
