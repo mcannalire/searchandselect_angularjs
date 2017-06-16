@@ -108,7 +108,7 @@
                     '</div>\n' +
                     '<ul class="dropdown dropdown-menu">\n' +
                         '<li ng-repeat="item in values" class="menu-item" ng-click="selectItem(item)" ng-if="values.length > 0">\n'+
-                            '<div class="inner-menu-item"><span class="ui-select-label" ng-class="isActive(item) ? \'active\' : \'\'>{{item[key]}}</span></div>\n'+
+                            '<div class="inner-menu-item"><span class="ui-select-label" ng-class="isActive(item) ? \'active\' : \'\'">{{item[key]}}</span></div>\n'+
                         '</li>\n'+
                         '<li ng-if="values.length == 0">\n'+
                             'No Records\n' +
