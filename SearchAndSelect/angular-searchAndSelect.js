@@ -101,9 +101,9 @@
 
         function template() {
             return (
-                '<div class="searchandselect" ng-class="{ active: showList }">\n'+
-                    '<div class="header ui-select-bootstrap" ng-click="show()">\n'+
-                        '<b>{{selecteditem[key]}}</b>\n' +
+                '<div class="searchandselect ui-select-bootstrap" ng-class="{ active: showList }">\n'+
+                    '<div class="header" ng-click="show()">\n'+
+                        '{{selecteditem[key]}}\n' +
                         '<span class="pull-right caret"></span>\n' +
                     '</div>\n' +
                     '<ul class="dropdown dropdown-menu">\n' +
