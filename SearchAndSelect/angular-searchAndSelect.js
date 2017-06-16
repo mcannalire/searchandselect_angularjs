@@ -29,6 +29,9 @@
 
             scope.selectItem = function (item) {
                 scope.selecteditem = item;
+                if(attr.ngChange){
+                  attr.ngChange(item);
+                }
                 scope.showList = false;
             };
 
