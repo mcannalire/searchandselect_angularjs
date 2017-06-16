@@ -17,6 +17,7 @@
                 key: "@",
                 onscroll: "&",
                 totalrecords: "=",
+                selectCallBack: '&',
             },
             templateUrl: 'search-and-select/template.html',
             link: linkFunc
@@ -29,11 +30,10 @@
 
             scope.selectItem = function (item) {
                 scope.selecteditem = item;
-                if(attr.ngChange){
-                  scope.$eval(attr.ngChange);
-                }
+                scope.selectCallBack(item); 
                 scope.showList = false;
             };
+          
 
             scope.isActive = function (item) {
                if(!item || !scope.selecteditem) return;
