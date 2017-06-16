@@ -30,7 +30,7 @@
             scope.selectItem = function (item) {
                 scope.selecteditem = item;
                 if(attr.ngChange){
-                  attr.ngChange(item);
+                  scope.$eval(attr.ngChange);
                 }
                 scope.showList = false;
             };
