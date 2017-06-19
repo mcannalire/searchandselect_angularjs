@@ -18,6 +18,7 @@
                 onscroll: "&",
                 totalrecords: "=",
                 selectCallBack: '&',
+                ngDisabled: '<',
             },
             templateUrl: 'search-and-select/template.html',
             link: linkFunc
@@ -27,6 +28,7 @@
 
         function linkFunc(scope, elm, attr) {
             scope.showList = false;
+            scope.disabled = false;
 
             scope.selectItem = function (item) {
                 scope.selecteditem = item;
@@ -52,6 +54,14 @@
 
             scope.show = function () {
                 scope.showList = !scope.showList;
+            };
+           
+            scope.disableDropdown = function() {
+               if(scope.ngDisabled){
+                  return scope.ngDisabled;
+               } else {
+                  return false;
+               }
             };
 
             $rootScope.$on("documentClicked", function (inner, target) {
@@ -105,7 +115,7 @@
         function template() {
             return (
                 '<div class="searchandselect ui-select-bootstrap" ng-class="{ active: showList }">\n'+
-                    '<div class="header" ng-click="show()">\n'+
+                    '<div class="header" ng-class="disableDropdown() ? \'header-disabled\' : \'\'" ng-click="disableDropdown() || show()">\n'+
                         '{{selecteditem[key]}}\n' +
                         '<span class="pull-right caret"></span>\n' +
                     '</div>\n' +
