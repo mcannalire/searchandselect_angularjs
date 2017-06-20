@@ -30,9 +30,9 @@
             scope.showList = false;
             scope.disabled = false;
 
-            scope.selectItem = function (item) {
-                scope.selecteditem = item;
-                scope.selectCallBack(item); 
+            scope.selectItem = function (_item) {
+                scope.selecteditem = _item;
+                scope.selectCallBack({item : _item}); 
                 scope.showList = false;
             };
           
