@@ -16,19 +16,19 @@ small {
     position: relative;
     width: 100%;
     border: 1px solid #e6e8ea;
-    z-index: 9999;
+    z-index: 0;
 }
 
 .searchandselect .header {
     height: 40px;
     padding: 10px 15px;
-    z-index: 9999;
+    z-index: 0;
 }
 
 .searchandselect .search {
     padding: 5px;
     display: none;
-    z-index: 9999;
+    z-index: 0;
 }
 
 .searchandselect .dropdown {
@@ -42,7 +42,7 @@ small {
     margin: 0;
     padding: 0;
     display: none;
-    z-index: 99999;
+    z-index: 0;
 }
 
 .searchandselect.active .search {
