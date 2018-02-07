@@ -115,7 +115,7 @@
         function template() {
             return (
                 '<div class="searchandselect ui-select-bootstrap" ng-class="{ active: showList }">\n'+
-                    '<div class="header" ng-class="disableDropdown() ? \'header-disabled\' : \'\'" ng-click="disableDropdown() || show()">\n'+
+                    '<div class="header-search-and-select" ng-class="disableDropdown() ? \'header-disabled\' : \'\'" ng-click="disableDropdown() || show()">\n'+
                         '{{selecteditem[key]}}\n' +
                         '<span class="pull-right caret"></span>\n' +
                     '</div>\n' +
